@@ -1,0 +1,56 @@
+! ------------------------------------------------------------------------------
+
+! ROFI Configuration
+
+! ------------------------------------------------------------------------------
+
+rofi.color-enabled: true
+
+rofi.color-window: #9915262c, #9915262c, #38acd6
+
+rofi.color-normal: #FF15262c, #ECB3FF, #FF15262c, #ECB3FF, #182e3e
+
+rofi.color-active: #FF15262c, #38acd6, #FF15262c, #38acd6, #15262c
+
+rofi.color-urgent: #FF15262c, #dc322f, #FF15262c, #dc322f, #15262c
+
+
+
+rofi.hide-scrollbar: 	true
+
+!rofi.font: 			Meslo LG S DZ 13
+
+rofi.separator-style: solid
+
+rofi.fullscreen:		false
+
+rofi.fixed-num-lines:	true
+
+
+rofi.bw: 			0
+
+
+rofi.width: 		1366
+
+
+rofi.lines: 10
+
+
+rofi.line-margin: 0
+
+
+rofi.eh:			1
+
+
+rofi.location: 		2
+
+
+rofi.columns:		3
+
+
+rofi.sidebar-mode: true
+
+
+rofi.padding:		226
+
+

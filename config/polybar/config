@@ -1,0 +1,455 @@
+;;set syn=dosini
+
+[colors]
+transparent = #00000000
+foreground = #ebdbb2
+;background = #000f0f0f
+background = #262626
+background-alt = #4e4e4e
+
+magenta =  #ebdbb2
+
+;i3
+i3_f_fg = #fb4934
+i3_f_bg = ${self.background}
+i3_u_fg = ${self.foreground}
+i3_u_bg = ${self.background}
+i3_undl =
+
+;mpd
+mpd_fg = ${self.foreground}
+mpd_bg = ${self.background}
+mpd_undl =
+
+;battery
+bat_fg = ${self.foreground}
+bat_bg = ${self.background}
+bat_undl =
+
+;volume
+vol_bg = ${self.background}
+vol_fg = ${self.foreground}
+vol_sl_fill = #aec795
+vol_sl_empty = ${self.foreground}
+vol_sl_bar = ${self.foreground}
+vol_undl =
+
+;backlight
+bl_fg = ${self.foreground}
+bl_bg =
+bl_sl_fill = #9f78e1
+bl_sl_empty = ${self.foreground}
+bl_sl_bar = ${self.foreground}
+bl_undl =
+
+;cpu temp
+cpu_fg = ${self.foreground}
+cpu_bg =
+cpu_undl =
+
+;weather
+w_fg = ${self.foreground}
+w_bg =
+w_undl =
+
+;time
+time_fg = ${self.foreground}
+time_bg =
+time_undl =
+
+t1 = #332D35
+t2 = #b16286
+t3 = ${colors.background}
+t4 = ${colors.background}
+t5 = ${colors.background}
+t6 = #458588
+t7 = ${colors.background}
+t8 = ${colors.background}
+
+------------------------HDMI BAR-------------------------
+
+[bar/hdmi]
+monitor = HDMI1
+bottom = false
+;width = 675
+width = 100%
+height = 18
+
+#override-redirect = true
+enable-ipc = true
+
+tray-transparent = false
+
+padding-left = 0
+padding-right = 1
+;offset-x = 1085
+;offset-x = 755
+;offset-x = 50%
+offset-y = 0
+
+tray-detached = false
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 18
+tray-padding = 0
+tray-scale = 1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;border-left-size = 15
+;border-right-size = 15
+border-color = ${self.background}
+
+font-0 = Source Sans Pro:style:SemiBold:size=10;0
+font-1 = FontAwesome:size=10;-1
+font-2 = Cousine Nerd Font:size=13;0
+
+modules-center = mpd
+modules-right  = battery_lvl volume temps weather clock
+modules-left  =  i3
+
+------------------------------REGULAR BAR-----------------------
+
+[bar/topbar]
+;monitor = eDP1
+;bottom = false
+;width = 675
+width = 100%
+height = 18
+
+;override-redirect = true
+enable-ipc = true
+
+tray-transparent = false
+
+padding-left = 0
+padding-right = 1
+;offset-x = 1085
+;offset-x = 755
+#offset-x = 50%
+offset-y = 0
+
+tray-detached = false
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 18
+tray-padding = 0
+tray-scale = 1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;border-left-size = 15
+;border-right-size = 15
+border-color = ${self.background}
+
+font-0 = Source Sans Pro:style:size=10;2
+font-1 = FontAwesome:size=10;2
+font-2 = Cousine Nerd Font:size=13;2
+
+modules-center =
+modules-right  = mpd battery_lvl pulseaudio xbacklight temps weather clock
+modules-left  =  i3
+
+--------------------------------------------------------
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; use icons
+fuzzy-match = true
+
+; get rid of wks numbers
+;strip-wsnumbers = true
+
+; ws-icon-[0-9]+ = label;icon
+; NOTE: The label needs to match the name of the i3 workspace
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-3 = 4;
+;ws-icon-4 = 5;
+;ws-icon-5 = 6;
+;ws-icon-6 = 7;
+;ws-icon-7 = 8;
+;ws-icon-8 = 9;
+;ws-icon-9 = 10;
+;ws-icon-default = ♟
+
+label-mode-padding = 2
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
+
+label-focused = %icon% %name%
+label-focused-background = ${colors.i3_f_bg}
+label-focused-foreground = ${colors.i3_f_fg}
+label-focused-underline = #b16286
+label-focused-padding = 2
+
+label-unfocused = %icon% %name%
+label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.i3_u_fg}
+
+label-urgent = %icon% %name%!
+label-urgent-background = ${colors.i3_u_bg}
+label-urgent-padding = 2
+
+label-visible = %icon% %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 2
+
+--------------------------------------------------------
+
+[module/mpd]
+type = internal/mpd
+
+interval = 1
+
+;format-offline-foreground = #b7bcb9
+format-online-foreground = ${colors.mpd_fg}
+format-playing = ${self.format-online}
+format-paused = ${self.format-online}
+format-stopped = ${self.format-online}
+toggle-off-foreground = #bca8a7
+toggle-on-foreground = #bca8a7
+
+host = 127.0.0.1
+port = 6600
+
+format-online = <label-song>
+format-online-padding = 10
+
+label-offline = 🎜 mpd is offline
+label-song =  %artist%-%title%
+
+--------------------------------------------------------
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+green = #55aa55
+
+format-volume = <label-volume> <bar-volume>
+;label-volume = Vol %percentage%%
+label-volume = Vol
+label-volume-foreground = ${colors.vol_fg}
+label-padding = 4
+label-volume-padding = 2
+
+label-muted = 🔇 muted
+label-muted-foreground = #66
+
+bar-volume-width = 8
+bar-volume-foreground-0 = ${colors.vol_sl_fill}
+bar-volume-foreground-1 = ${colors.vol_sl_fill}
+bar-volume-foreground-2 = ${colors.vol_sl_fill}
+bar-volume-foreground-3 = ${colors.vol_sl_fill}
+bar-volume-foreground-4 = ${colors.vol_sl_fill}
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.vol_sl_empty}
+
+;format-volume-prefix 			= 
+;format-volume-prefix-foreground = ${colors.t4}
+;format-volume-prefix-background = ${colors.t6}
+
+;format-volume-suffix 			= 
+;format-volume-suffix-foreground = ${colors.t6}
+;format-volume-suffix-background = ${colors.t4}
+
+--------------------------------------------------------
+
+[module/temps]
+type = custom/script
+interval = 1
+format = <label>
+exec = /home/elias/.config/polybar/cputemp.sh
+
+label-background = ${colors.cpu_bg}
+;label-foreground = #eb8d9d
+label-foreground = ${colors.cpu_fg}
+label-padding   =  2
+
+;format-prefix            = 
+;format-prefix-background = ${colors.t6}
+;format-prefix-foreground = ${self.label-background}
+
+;format-suffix            = 
+;format-suffix-background = ${self.label-background}
+;format-suffix-foreground = ${colors.t2}
+
+-----------------------------------------------------------------------
+
+[module/battery_lvl]
+
+type = internal/battery
+interval = 5
+format = <label>
+
+label-background = ${colors.bat_bg}
+;label-background = ${colors.t6}
+label-foreground = ${colors.bat_fg}
+label-padding   =  0
+
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = Bat-C: <label-charging>
+format-charging-background = ${colors.cpu_bg}
+format-charging-foreground = ${colors.cpu_fg}
+
+format-discharging = Bat: <label-discharging>
+format-discharging-background = ${colors.cpu_bg}
+format-discharging-foreground = ${colors.cpu_fg}
+
+format-full = Bat-F: <label-full>
+format-full-background = ${colors.cpu_bg}
+format-full-foreground = ${colors.cpu_fg}
+
+;format-discharging-prefix            = 
+;format-discharging-prefix-background = ${colors.t3}
+;format-discharging-prefix-foreground = ${colors.t6}
+
+;format-discharging-suffix            = 
+;format-discharging-suffix-background = ${self.label-background}
+;format-discharging-suffix-foreground = ${colors.t6}
+
+;format-charging-prefix            = 
+;format-charging-prefix-background = ${colors.t3}
+;format-charging-prefix-foreground = ${colors.t6}
+
+;format-charging-suffix            = 
+;format-charging-suffix-background = ${self.label-background}
+;format-charging-suffix-foreground = ${colors.t6}
+
+;format-full-prefix            = 
+;format-full-prefix-background = ${colors.t3}
+;format-full-prefix-foreground = ${colors.t6}
+
+;format-full-suffix            = 
+;format-full-suffix-background = ${self.label-background}
+;format-full-suffix-foreground = ${colors.t6}
+
+label-discharging-background = ${self.label-background}
+label-charging-background = ${self.label-background}
+label-full-background = ${self.label-background}
+
+label-discharging-foreground = ${colors.cpu_fg}
+label-charging-foreground = ${colors.cpu_fg}
+label-full-foreground = ${colors.cpu_fg}
+
+-----------------------------------------------------------------------------
+
+[module/date]
+type     = internal/date
+interval = 2
+
+date     = " %d.%m.%Y"
+date-alt = "  %A, %d. %B"
+
+time     = " %H:%M"
+time-alt = "%H:%M:%S"
+
+label-background = ${colors.time_fg}
+;label-foreground = ${colors.time_fg}
+label-padding = 2
+format-padding   = 0
+format           = <label>
+label            = %time% | %date%
+
+format-prefix            = "
+format-prefix-foreground = ${self.label-background}
+format-suffix            = "
+format-suffix-foreground = ${self.label-background}
+
+---------------------------------------------------------------
+
+[module/weather]
+type = custom/script
+interval = 300
+format = <label>
+exec = /home/elias/.config/polybar/weather.sh
+
+label-background = ${colors.w_bg}
+label-foreground = ${colors.w_fg}
+label-padding   =  2
+
+;format-prefix            = 
+;format-prefix-background = ${colors.t2}
+;format-prefix-foreground = ${self.label-background}
+
+;format-suffix            = 
+;format-suffix-background = ${self.label-background}
+;format-suffix-foreground = ${colors.t2}
+
+--------------------------------------------------------------------
+
+[module/clock]
+type = internal/date
+interval = 5
+label = %date% %time%
+
+date-alt=%a %b %d
+
+time = %l:%M%P
+
+label-background = ${colors.time_bg}
+label-foreground = ${colors.time_fg}
+label-padding   =  1
+
+;format-prefix            = 
+;format-prefix-background = #876461
+;format-prefix-background = ${colors.t2}
+;format-prefix-foreground = ${colors.t8}
+
+;format-suffix            = 
+;format-suffix-background = ${colors.t8}
+;format-suffix-foreground = ${colors.background}
+
+----------------------------------------------------------------------
+
+[module/xbacklight]
+type = internal/xbacklight
+;type = internal/backlight
+
+format = <label> <bar>
+label = BL
+label-padding = 2
+
+bar-width = 8
+bar-indicator = |
+bar-indicator-foreground = ${colors.bl_sl_bar}
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+;bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${colors.bl_sl_fill}
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.bl_sl_empty}
+card = intel_backlight
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = #4e4e4e
