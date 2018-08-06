@@ -14,7 +14,7 @@ local awful = require('awful')
 
 local path_to_icons = "/usr/share/icons/Arc/status/symbolic/"
 
-local weather_cmd = 'GET https://api.darksky.net/forecast/f7d4b706be41391f9755a9c5df5c2d13/34.054673,-106.906169?units=us&exclude=minutely,hourly,daily,alerts,flags'
+local weather_cmd = 'GET https://api.darksky.net/forecast/your_api_key/34.054673,-106.906169?units=us&exclude=minutely,hourly,daily,alerts,flags'
 
 local icon_widget = wibox.widget {
     {
